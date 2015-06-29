@@ -1,32 +1,14 @@
 #!/usr/bin/env bash
 
 if [[ $# -le 2 || ( $# == "--help") ||  $# == "-h" ]]; then
-        echo "usage: venytin -i example.png -l 10 -o out.mp4"
+        echo "usage: venytin example.png 10 [ffmpeg params] out.mp4"
         exit 1
 fi
 
-while [[ $# > 0 ]]
-do
-key="$1"
+INPUT="$1"
+shift
 
-case $key in
-    -i)
-    INPUT="$2"
-    shift # past argument
-    ;;
-    -l)
-    LENGTH="$2"
-    shift # past argument
-    ;;
-    -o)
-    OUTPUT="$2"
-    shift # past argument
-    ;;
-    *)
-            # unknown option
-    ;;
-esac
-shift # past argument or value
-done
+LENGTH="$1"
+shift
 
-ffmpeg -loop 1 -i $INPUT -t $LENGTH -pix_fmt yuv420p $OUTPUT
+ffmpeg -loop 1 -i "$INPUT" -t "$LENGTH" -pix_fmt yuv420p $@
