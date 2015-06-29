@@ -1,0 +1,12 @@
+{
+  "name": "venytin",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Matti Paksula",
+  "license": "MIT",
+  "bin": {
+    "venytin": "./bin/venytin"
+  },
+  "dependencies": {
+  }
+}
